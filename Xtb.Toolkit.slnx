@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="sources/Xtb.Toolkit.Demo/Xtb.Toolkit.Demo.csproj" />
+  <Project Path="sources/Xtb.Toolkit/Xtb.Toolkit.csproj" />
+</Solution>
