@@ -2,7 +2,7 @@
 
 [![GitHub Repo](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/lastunicorn/xtb-toolkit) [![GitHub Build](https://img.shields.io/github/actions/workflow/status/lastunicorn/xtb-toolkit/build-master.yml?logo=github)](https://github.com/lastunicorn/xtb-toolkit/actions/workflows/build-master.yml) [![NuGet Version](https://img.shields.io/nuget/v/DustInTheWind.Xtb.Toolkit?logo=nuget)](https://www.nuget.org/packages/DustInTheWind.Xtb.Toolkit) [![NuGet Downloads](https://img.shields.io/nuget/dt/DustInTheWind.Xtb.Toolkit?logo=nuget)](https://www.nuget.org/packages/DustInTheWind.Xtb.Toolkit)
 
-`XTB Toolkit` is a .NET library that helps working with files exported from XTB.
+**XTB Toolkit** is a .NET library (`DustInTheWind.Xtb.Toolkit`, targeting `net8.0`) for parsing `.xlsx` files exported from the XTB S.A. brokerage platform.
 
 **XTB S.A.** is a Warsaw brokerage firm that provides products, services, and technology  solutions for trading various financial instruments, including foreign  exchange (forex) and contracts for difference (CFDs).
 
