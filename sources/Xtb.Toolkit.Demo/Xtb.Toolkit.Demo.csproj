@@ -8,4 +8,12 @@
         <RootNamespace>DustInTheWind.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="ConsoleTools.Controls.Tables" Version="1.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Xtb.Toolkit\Xtb.Toolkit.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
 </Project>

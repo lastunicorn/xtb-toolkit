@@ -8,4 +8,8 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Spreadsheet\" />
+    </ItemGroup>
+
 </Project>
