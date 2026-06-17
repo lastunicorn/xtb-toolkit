@@ -2,7 +2,7 @@ namespace DustInTheWind.Xtb.Toolkit;
 
 public class CashOperation
 {
-	public string Type { get; set; }
+	public CashOperationType Type { get; set; }
 
 	public string Ticker { get; set; }
 

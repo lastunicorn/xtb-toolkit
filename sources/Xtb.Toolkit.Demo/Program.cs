@@ -15,6 +15,7 @@ internal static class Program
 			ReportDocument document = await ReportDocument.LoadFromFileAsync(fileName, DocumentSection.All);
 
 			Display(document.CashOperationsSection);
+			Console.WriteLine();
 			Display(document.ClosedPositionsSection);
 		}
 		catch (DocumentLoadException ex)
@@ -31,6 +32,12 @@ internal static class Program
 
 	private static void Display(CashOperationsSection document)
 	{
+		if (document == null)
+		{
+			Console.Error.WriteLine("No Cash Operations document loaded.");
+			return;
+		}
+		
 		DataGrid dataGrid = new()
 		{
 			Title = new[]
@@ -71,6 +78,12 @@ internal static class Program
 
 	private static void Display(ClosedPositionsSection document)
 	{
+		if (document == null)
+		{
+			Console.Error.WriteLine("No Closed Positions document loaded.");
+			return;
+		}
+		
 		DataGrid dataGrid = new()
 		{
 			Title = new[]
