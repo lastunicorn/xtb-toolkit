@@ -94,7 +94,7 @@ internal static class Program
 			BorderTemplate = BorderTemplate.PlusMinusBorderTemplate,
 			Footer = new[]
 			{
-				$"Count: {document.ClosedOperations.Count}",
+				$"Count: {document.ClosedPositions.Count}",
 				$"Profit/Loss: {document.ProfitOrLoss}"
 			}
 		};
@@ -125,7 +125,7 @@ internal static class Program
 		dataGrid.Columns.Add("Position ID");
 		dataGrid.Columns.Add("Comment");
 
-		foreach (ClosedOperation closedOperation in document.ClosedOperations)
+		foreach (ClosedPosition closedOperation in document.ClosedPositions)
 			dataGrid.Rows.Add(
 				closedOperation.Instrument,
 				closedOperation.Category,

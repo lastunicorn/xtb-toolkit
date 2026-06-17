@@ -3,4 +3,5 @@ XTB Toolkit
 
 v1.0.0
 --------------------------------------------------------------------------------
-[new   ] Added CashOperationsDocument to parse cash operations spreadsheets.
+[new   ] Added ReportDocument to parse report spreadsheets containing cash
+         operations and closed positions.

@@ -74,9 +74,9 @@ Console.WriteLine($"Account : {cash.AccountNumber}");
 Console.WriteLine($"Period  : {cash.DateFrom:yyyy-MM-dd} – {cash.DateTo:yyyy-MM-dd}");
 Console.WriteLine($"Total   : {cash.Total}");
 
-foreach (CashOperation op in cash.CashOperations)
+foreach (CashOperation cashOperation in cash.CashOperations)
 {
-    Console.WriteLine($"{op.Time:yyyy-MM-dd HH:mm:ss}  {op.Type,-20}  {op.Amount,10}  {op.Ticker}");
+    ...
 }
 ```
 
@@ -89,9 +89,9 @@ Console.WriteLine($"Account      : {closed.AccountNumber}");
 Console.WriteLine($"Period       : {closed.DateFrom:yyyy-MM-dd} – {closed.DateTo:yyyy-MM-dd}");
 Console.WriteLine($"Profit/Loss  : {closed.ProfitOrLoss}");
 
-foreach (ClosedOperation op in closed.ClosedOperations)
+foreach (ClosedPosition closedPosition in closed.ClosedPositions)
 {
-    Console.WriteLine($"{op.Instrument}  {op.OpenTime:yyyy-MM-dd} → {op.CloseTime:yyyy-MM-dd}  P/L: {op.ProfitOrLoss}");
+    ...
 }
 ```
 

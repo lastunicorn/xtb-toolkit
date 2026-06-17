@@ -1,6 +1,6 @@
 namespace DustInTheWind.Xtb.Toolkit;
 
-public class ClosedOperation
+public class ClosedPosition
 {
 	public string Instrument { get; set; }
 

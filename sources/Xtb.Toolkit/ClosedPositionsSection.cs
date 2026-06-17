@@ -8,7 +8,7 @@ public class ClosedPositionsSection
 
 	public DateTime DateTo { get; set; }
 
-	public List<ClosedOperation> ClosedOperations { get; } = [];
+	public List<ClosedPosition> ClosedPositions { get; } = [];
 
 	public decimal ProfitOrLoss { get; set; }
 }

@@ -142,7 +142,7 @@ internal class XlsxReportDocument : IDisposable
 		for (int i = 5; i < rows.Count - 1; i++)
 		{
 			Row row = rows[i];
-			ClosedOperation closedOperation = new()
+			ClosedPosition closedPosition = new()
 			{
 				Instrument = GetStringValue(FindCell(row, "A"), sharedStrings),
 				Category = GetStringValue(FindCell(row, "B"), sharedStrings),
@@ -170,7 +170,7 @@ internal class XlsxReportDocument : IDisposable
 				PositionId = GetStringValue(FindCell(row, "X"), sharedStrings),
 				Comment = GetStringValue(FindCell(row, "Y"), sharedStrings),
 			};
-			section.ClosedOperations.Add(closedOperation);
+			section.ClosedPositions.Add(closedPosition);
 		}
 
 		// Last row: "Profit/loss" label in A, total in K.
