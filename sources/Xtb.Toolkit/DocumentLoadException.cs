@@ -2,7 +2,7 @@ namespace DustInTheWind.Xtb.Toolkit;
 
 public class DocumentLoadException : Exception
 {
-	private static string DefaultMessage = "Failed to load XTB report document.";
+	private static readonly string DefaultMessage = "Failed to load XTB report document.";
 
 	public DocumentLoadException()
 		: base(DefaultMessage)

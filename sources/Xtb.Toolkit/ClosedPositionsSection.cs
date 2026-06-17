@@ -5,7 +5,7 @@ public class ClosedPositionsSection
 	public string AccountNumber { get; set; }
 
 	public DateTime DateFrom { get; set; }
-	
+
 	public DateTime DateTo { get; set; }
 
 	public List<ClosedOperation> ClosedOperations { get; } = [];
