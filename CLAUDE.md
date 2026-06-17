@@ -20,7 +20,7 @@ dotnet restore ./Xtb.Toolkit.slnx --configfile ./nuget.config
 # Build (Release)
 dotnet build ./Xtb.Toolkit.slnx -c Release --no-restore
 
-# Run the demo
+# Run the demo (requires report.xlsx in sources/Xtb.Toolkit.Demo/)
 dotnet run --project sources/Xtb.Toolkit.Demo/Xtb.Toolkit.Demo.csproj
 
 # Pack the NuGet package locally
@@ -30,6 +30,34 @@ dotnet pack ./sources/Xtb.Toolkit/Xtb.Toolkit.csproj -c Release -o ./artifacts
 ## Versioning
 
 `Directory.Build.props` sets `<Version>0.0.0.0</Version>` as a placeholder. Real versions are injected at CI build time via `-p:Version=...`. To publish to NuGet, push a `vMAJOR.MINOR.PATCH` git tag — the `publish-nuget.yml` workflow handles the rest.
+
+## Architecture
+
+### Parsing pipeline
+
+The public entry point is `ReportDocument.LoadFromFileAsync` / `LoadAsync`. These methods open a stream and delegate to the internal `XlsxReportDocument` (in `sources/Xtb.Toolkit/Xlsx/`), which uses `DocumentFormat.OpenXml` to open the spreadsheet. `XlsxReportDocument` is internal and disposable; `ReportDocument` wraps all exceptions as `DocumentLoadException`.
+
+The `DocumentSection` flags enum controls which sheets are parsed — callers pass `DocumentSection.CashOperations`, `DocumentSection.ClosedPositions`, or `DocumentSection.All`.
+
+### Sheet parsing conventions
+
+Both sheets share the same fixed row layout:
+- Row 1: account number (column B)
+- Rows 2–4: metadata (period dates in rows 3–4, column B)
+- Row 5: column headers (skipped)
+- Rows 6 to N−1: data rows
+- Row N (last): summary row (Total / Profit/loss)
+
+Sheet names are hardcoded strings: `"Cash Operations"` and `"Closed Positions"`. OpenXml shared strings are resolved via a pre-loaded `string[]` index; numeric dates are OADate doubles.
+
+### Value object pattern
+
+`CashOperationType` is a `sealed record` value object that wraps a raw string from the spreadsheet. It provides:
+- Static well-known instances (`StockPurchase`, `FreeFundsInterest`, etc.)
+- A `KnownValues` collection for enumeration
+- Implicit conversions to/from `string`
+
+Follow this same pattern when adding new typed fields that map to a fixed set of known string values from XTB.
 
 ## Code Conventions
 
@@ -46,7 +74,3 @@ dotnet pack ./sources/Xtb.Toolkit/Xtb.Toolkit.csproj -c Release -o ./artifacts
 - All test files for a class live in a directory named after the class: class `Color` → `ColorTests/`.
 - Test method naming: `Having<SetupDetails>_When<Action>_Then<ExpectedResult>`.
 - `Assert.Throws` lambda must always use a block body `() => { ... }`.
-
-## WPF (if applicable)
-
-Avoid code-behind in windows or user controls. Use attached behaviors instead.
