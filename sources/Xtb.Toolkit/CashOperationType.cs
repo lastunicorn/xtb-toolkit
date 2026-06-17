@@ -11,7 +11,8 @@ public sealed record class CashOperationType
 	[
 		StockPurchase,
 		FreeFundsInterest,
-		FreeFundsInterestTax
+		FreeFundsInterestTax,
+		Deposit
 	];
 	
 	public string Value { get; }
