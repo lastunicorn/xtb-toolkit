@@ -71,31 +71,75 @@ internal static class Program
 
 	private static void Display(ClosedPositionsSection document)
 	{
-		// DataGrid dataGrid = new()
-		// {
-		// 	Title = "Transactions",
-		// 	BorderTemplate = BorderTemplate.PlusMinusBorderTemplate,
-		// 	Footer = $"Count: {document.Count}"
-		// };
-		//
-		// dataGrid.Columns.Add("Date");
-		// dataGrid.Columns.Add("Transaction ID");
-		// dataGrid.Columns.Add("Details");
-		// dataGrid.Columns.Add("Turnover", HorizontalAlignment.Right);
-		// dataGrid.Columns.Add("Balance", HorizontalAlignment.Right);
-		// dataGrid.Columns.Add("Currency", HorizontalAlignment.Right);
-		// dataGrid.Columns.Add("Payment Type");
-		//
-		// foreach (TransactionRecord transaction in document)
-		// 	dataGrid.Rows.Add(
-		// 		transaction.Date.ToString("yyyy-MM-dd HH:mm:ss"),
-		// 		transaction.TransactionId?.Truncate(30),
-		// 		transaction.Details?.Truncate(30),
-		// 		transaction.Turnover.ToString(),
-		// 		transaction.Balance.ToString(),
-		// 		transaction.Currency,
-		// 		transaction.PaymentType);
-		//
-		// dataGrid.Display();
+		DataGrid dataGrid = new()
+		{
+			Title = new[]
+			{
+				$"Closed Positions for {document.AccountNumber}",
+				$"{document.DateFrom:yyyy-MM-dd HH:mm:ss} - {document.DateTo:yyyy-MM-dd HH:mm:ss}"
+			},
+			BorderTemplate = BorderTemplate.PlusMinusBorderTemplate,
+			Footer = new[]
+			{
+				$"Count: {document.ClosedOperations.Count}",
+				$"Profit/Loss: {document.ProfitOrLoss}"
+			}
+		};
+
+		dataGrid.Columns.Add("Instrument");
+		dataGrid.Columns.Add("Category");
+		dataGrid.Columns.Add("Ticker");
+		dataGrid.Columns.Add("Type");
+		dataGrid.Columns.Add("Volume");
+		dataGrid.Columns.Add("Open Price", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Open Time", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Close Price", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Close Time", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Product");
+		dataGrid.Columns.Add("Profit/Loss", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Gross Profit", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Purchase Value", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Sale Value", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Stop Loss", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Take Profit", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Commission", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Margin", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Swap", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Rollover", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Open Conv. Rate", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Close Conv. Rate", HorizontalAlignment.Right);
+		dataGrid.Columns.Add("Close Origin");
+		dataGrid.Columns.Add("Position ID");
+		dataGrid.Columns.Add("Comment");
+
+		foreach (ClosedOperation closedOperation in document.ClosedOperations)
+			dataGrid.Rows.Add(
+				closedOperation.Instrument,
+				closedOperation.Category,
+				closedOperation.Ticker,
+				closedOperation.Type,
+				closedOperation.Volume,
+				closedOperation.OpenPrice.ToString(CultureInfo.CurrentCulture),
+				closedOperation.OpenTime.ToString("yyyy-MM-dd HH:mm:ss"),
+				closedOperation.ClosePrice.ToString(CultureInfo.CurrentCulture),
+				closedOperation.CloseTime.ToString("yyyy-MM-dd HH:mm:ss"),
+				closedOperation.Product,
+				closedOperation.ProfitOrLoss,
+				closedOperation.GrossProfit,
+				closedOperation.PurchaseValue.ToString(CultureInfo.CurrentCulture),
+				closedOperation.SaleValue.ToString(CultureInfo.CurrentCulture),
+				closedOperation.StopLoss,
+				closedOperation.TakeProfit,
+				closedOperation.Commission,
+				closedOperation.Margin,
+				closedOperation.Swap,
+				closedOperation.Rollover,
+				closedOperation.OpenConversionRate,
+				closedOperation.CloseConversionRate,
+				closedOperation.CloseOrigin,
+				closedOperation.PositionId,
+				closedOperation.Comment);
+
+		dataGrid.Display();
 	}
 }
