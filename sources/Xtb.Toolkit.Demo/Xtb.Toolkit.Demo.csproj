@@ -16,4 +16,10 @@
         <ProjectReference Include="..\Xtb.Toolkit\Xtb.Toolkit.csproj" PrivateAssets="All" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="report.xlsx">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
