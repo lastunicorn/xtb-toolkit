@@ -37,7 +37,7 @@ internal static class Program
 			Console.Error.WriteLine("No Cash Operations document loaded.");
 			return;
 		}
-		
+
 		DataGrid dataGrid = new()
 		{
 			Title = new[]
@@ -83,19 +83,17 @@ internal static class Program
 			Console.Error.WriteLine("No Closed Positions document loaded.");
 			return;
 		}
-		
+
 		DataGrid dataGrid = new()
 		{
 			Title = new[]
 			{
-				$"Closed Positions for {document.AccountNumber}",
-				$"{document.DateFrom:yyyy-MM-dd HH:mm:ss} - {document.DateTo:yyyy-MM-dd HH:mm:ss}"
+				$"Closed Positions for {document.AccountNumber}", $"{document.DateFrom:yyyy-MM-dd HH:mm:ss} - {document.DateTo:yyyy-MM-dd HH:mm:ss}"
 			},
 			BorderTemplate = BorderTemplate.PlusMinusBorderTemplate,
 			Footer = new[]
 			{
-				$"Count: {document.ClosedPositions.Count}",
-				$"Profit/Loss: {document.ProfitOrLoss}"
+				$"Count: {document.ClosedPositions.Count}", $"Profit/Loss: {document.ProfitOrLoss}"
 			}
 		};
 

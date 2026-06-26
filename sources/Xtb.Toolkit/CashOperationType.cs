@@ -14,7 +14,7 @@ public sealed record class CashOperationType
 		FreeFundsInterestTax,
 		Deposit
 	];
-	
+
 	public string Value { get; }
 
 	public CashOperationType(string value)
